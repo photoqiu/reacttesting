@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { hashHistory/* , Link */ } from 'react-router'
-import header from './departments/header'
+import header from '../departments/header'
 import { Spin, Form, Icon, Input, Button, Row, Col, message } from 'antd'
 
 
@@ -24,7 +24,9 @@ export default class Index extends Component {
         const { getFieldDecorator } = this.props.form
         console.log(this.props.loginResponse)
         return (
-            <header />
+            <div className="container">
+                <header />
+            </div>
         )
     }
 
