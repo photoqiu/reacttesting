@@ -1,5 +1,14 @@
-import { ADD_TODO } from './index.js'
+import { routerReducer as routing } from 'react-router-redux'
+import { combineReducers } from 'redux'
 
-const initialState = {
-  todos: []
-}
+// import * as tabList from './tabList'
+// import * as common from './common'
+
+const rootReducer = combineReducers({
+  routing,
+  config: (state = {}) => state,
+  // ...tabList,
+  // ...common,
+})
+
+export default rootReducer
