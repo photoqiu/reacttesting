@@ -82,6 +82,4 @@ const webpackConfigDev = {
         port: PORT,
     },
 }
-let datas = merge(webpackConfigBase, webpackConfigDev)
-console.log(JSON.stringify(datas))
 module.exports = merge(webpackConfigBase, webpackConfigDev)

@@ -9,7 +9,7 @@ import configure from '@middleware/configureStore'
 
 const HotRoutes = hot(Routes)
 const store = configure({})
-const devTools = window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__();
+// const devTools = window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 ReactDOM.render( 
     <Provider store = { store } >
         <HotRoutes / >

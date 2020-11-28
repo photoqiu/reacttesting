@@ -1,6 +1,3 @@
-import { hashHistory } from 'react-router'
-import { message } from 'antd'
-import { loginByTicket, staff, login as loginApi, getBtns } from '@apis/common'
 
 export function parseQueryString(url) {
   const obj = {}
@@ -19,14 +16,14 @@ export function parseQueryString(url) {
 // 进入路由的判断
 export const isLogin = (nextState, replaceState) => {
     if (nextState.location.query && nextState.location.query.ticket) { // 如果url自带ticket
-      sessionStorage.setItem('token', 'ticket')
+        sessionStorage.setItem('token', 'ticket')
     }
     if (nextState.location.query && nextState.location.query.key) { // 如果url自带key
-      sessionStorage.setItem('token', 'key')
+        sessionStorage.setItem('token', 'key')
     }
     const token = sessionStorage.getItem('token')
     if (!token) { // 没有token，那就返回首页
-      replaceState('/login')
+        replaceState('/login')
     }
 }
 

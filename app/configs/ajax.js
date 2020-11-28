@@ -4,11 +4,13 @@ import { doPostDatas, doGetDatas, doFormPostDatas, doJsonpDatas } from './base.a
 
 export const doAyncConnections = function(types, url, options) {
     if (types === 'POST') {
-        return doPostDatas(`${url}`, options)
+        return doPostDatas(url, options)
     } else if (types === 'JSONP') {
-        return doJsonpDatas(`${url}`)
+        return doJsonpDatas(url)
+    } else if (types === 'FORM') {
+        return doFormPostDatas(url, options)
     }
-    return doGetDatas(`${url}`)
+    return doGetDatas(url)
 }
 
 // 创建发起api的启动器
@@ -22,5 +24,4 @@ export const createApi = function(api, types, options) {
         }
     }
     return doAyncConnections(types, url, options);
-
 }
