@@ -173,6 +173,17 @@ const webpackConfigBase = {
                 }
             },
             {
+                test: /\.(ico|icon)(\?.*)?$/,
+                exclude: /node_modules/,
+                include: [resolve('./app/images/icon')],
+                loader: 'url-loader',
+                options: {
+                    limit: 8192,
+                    name: '[name].[hash:4].[ext]',
+                    outputPath: '/images/icon'
+                }
+            },
+            {
                 test: /\.(woff|eot|ttf|svg|gif)$/,
                 loader: 'url-loader',
                 options: {
@@ -194,7 +205,7 @@ const webpackConfigBase = {
         //     /de|fr|hu/
         // ),
         new MiniCssExtractPlugin({
-            filename: devMode ? 'css/style.css' : 'css/style.[contenthash].css',
+            filename: devMode ? './app/styles/style.css' : './app/styles/style.[contenthash].css',
             chunkFilename: devMode ? 'css/style.[id].css' : 'css/style.[contenthash].[id].css'
         }),
         new FriendlyErrorsPlugin(),

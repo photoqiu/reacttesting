@@ -1,16 +1,13 @@
-import React from 'react'
-import { Router, Route, IndexRoute, hashHistory } from 'react-router'
-import { isLogin } from '@configs/common'
-import { set } from '@config'
+import React from "react"
+import { BrowserRouter as Router, Route, Link, Switch, Redirect,  useLocation } from "react-router-dom"
 import * as index from '@components/index'
 
 export default () => (
-    <Router history={hashHistory}>
-        <Route path="/" component={index.app} onEnter={isLogin}>
-            <IndexRoute component={index.index} />
-            <Route path="/desk$/index" component={index.index} />
-        </Route>
-        <Route path="/login" component={index.login} />
-        <Route path="*" component={index.error} />
+    <Router>
+        <Switch>
+            <Route exact path="/" component={index.app} />
+            <Route path="/login" component={index.login} />
+            <Route path="*" component={index.error} />
+        </Switch>
     </Router>
 )

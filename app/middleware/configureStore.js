@@ -20,5 +20,5 @@ export default function configure(initialState) {
         store.replaceReducer(nextReducer)
         })
     }
-     return store
+    return store
 }
