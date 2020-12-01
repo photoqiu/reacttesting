@@ -4,7 +4,6 @@ import { hashHistory/* , Link */ } from 'react-router'
 import header from '../departments/header'
 import { Spin, Form, Icon, Input, Button, Row, Col, message } from 'antd'
 
-
 export default class Index extends Component {
 
     constructor(props, context) {

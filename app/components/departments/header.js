@@ -19,8 +19,7 @@ export default class Header extends Component {
     }
 
     render() {
-        const { getFieldDecorator } = this.props.form
-        console.log(this.props.loginResponse)
+        
         return (
         
             <header id="site-header">

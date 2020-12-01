@@ -141,11 +141,29 @@ const webpackConfigBase = {
                 use: [{
                         loader: MiniCssExtractPlugin.loader,
                         options: {
-                            hmr: devMode,
-                            reloadAll: devMode,
-                        },
+                            esModule: false,
+                            publicPath: '.',
+                            modules: {
+                                namedExport: true,
+                            }
+                        }
                     },
-                    'happypack/loader?id=happyStyle',
+                    'happypack/loader?id=happyStyle'
+                ]
+            },
+            {
+                test: /\.s[ac]ss$/i,
+                use: [{
+                        loader: MiniCssExtractPlugin.loader,
+                        options: {
+                            esModule: false,
+                            publicPath: '.',
+                            modules: {
+                                namedExport: true,
+                            }
+                        }
+                    },
+                    'happypack/loader?id=happyScssStyle'
                 ]
             },
             {
@@ -205,7 +223,7 @@ const webpackConfigBase = {
         //     /de|fr|hu/
         // ),
         new MiniCssExtractPlugin({
-            filename: devMode ? './app/styles/style.css' : './app/styles/style.[contenthash].css',
+            filename: devMode ? './app/styles/bootstrap.css' : './app/styles/bootstrap.[contenthash].css',
             chunkFilename: devMode ? 'css/style.[id].css' : 'css/style.[contenthash].[id].css'
         }),
         new FriendlyErrorsPlugin(),
@@ -224,13 +242,23 @@ const webpackConfigBase = {
         }),
         new HappyPack({
             //用id来标识 happypack处理那里类文件
+            id: 'happyScssStyle',
+            //如何处理  用法和loader 的配置一样
+            loaders: ['style-loader', 'css-loader', 'postcss-loader', 'sass-loader'],
+            //代表共享进程池，即多个 HappyPack 实例都使用同一个共享进程池中的子进程去处理任务，以防止资源占用过多。
+            threadPool: happyThreadPool,
+            //允许 HappyPack 输出日志
+            verbose: false
+        }),
+        new HappyPack({
+            //用id来标识 happypack处理那里类文件
             id: 'happyStyle',
             //如何处理  用法和loader 的配置一样
             loaders: ['style-loader', 'css-loader', 'postcss-loader', 'less-loader'],
             //代表共享进程池，即多个 HappyPack 实例都使用同一个共享进程池中的子进程去处理任务，以防止资源占用过多。
             threadPool: happyThreadPool,
             //允许 HappyPack 输出日志
-            verbose: false,
+            verbose: false
         }),
         new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
     ]
