@@ -68,8 +68,8 @@ const webpackConfigBase = {
     },
     output: {
         path: resolve('./dist'),
-        filename: devMode ? 'js/[name].[hash].js' : 'js/[name].[contenthash].js',
-        chunkFilename: devMode ? 'chunks/[name].[hash:4].js' : 'chunks/[name].[contenthash].js'
+        filename: devMode ? 'js/[name].[fullhash].js' : 'js/[name].[contenthash].js',
+        chunkFilename: devMode ? 'chunks/[name].[fullhash:4].js' : 'chunks/[name].[contenthash].js'
     },
     resolve: { // 减少后缀
         extensions: ['.js', '.jsx', '.json'],
