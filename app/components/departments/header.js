@@ -22,7 +22,6 @@ export default class Header extends Component {
         const { getFieldDecorator } = this.props.form
         console.log(this.props.loginResponse)
         return (
-        
             <header id="site-header">
                 <div className="row">
                     <div className="col-md-4 col-sm-5 col-xs-8">
