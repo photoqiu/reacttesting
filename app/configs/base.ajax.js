@@ -2,8 +2,7 @@ import 'whatwg-fetch'
 import 'fetch-jsonp'
 
 
-export default {
-    doJsonpDatas(url) {
+export default function doJsonpDatas(url) {
         return new Promise((resolve, reject) => {
             fetch(url, {
                 credentials: 'include'
@@ -11,8 +10,8 @@ export default {
             .then(response => resolve(response))
             .then(error => reject(error))
         }).catch(err => console.log(err))
-    },
-    doFormPostRawDatas(url, datas) {
+    };
+export default function doFormPostRawDatas(url, datas) {
         return new Promise((resolve, reject) => {
             fetch(url, {
                 method: 'POST',
@@ -25,8 +24,8 @@ export default {
             .then(response => resolve(response))
             .then(error => reject(error))
         }).catch(err => console.log(err))
-    },
-    doFormPostDatas(url, datas) {
+    };
+export default function doFormPostDatas(url, datas) {
         return new Promise((resolve, reject) => {
             fetch(url, {
                 method: 'POST',
@@ -39,8 +38,8 @@ export default {
             .then(response => resolve(response))
             .then(error => reject(error))
         }).catch(err => console.log(err))
-    },
-    doPostDatas(url, datas, cb, errorCb) {
+    };
+export default function doPostDatas(url, datas, cb, errorCb) {
         return new Promise((resolve, reject) => {
             fetch(url, {
                 credentials: 'same-origin',
@@ -54,8 +53,8 @@ export default {
             .then(response => resolve(response.json()))
             .then(error => reject(error))
         }).catch(err => console.log(err))
-    },
-    doPostRawDatas(url, datas) {
+    };
+export default function doPostRawDatas(url, datas) {
         return new Promise((resolve, reject) => {
             fetch(url, {
                 credentials: 'same-origin',
@@ -73,8 +72,8 @@ export default {
             .then(response => resolve(response.json()))
             .then(error => reject(error))
         }).catch(err => console.log(err))
-    },
-    doGetDatas(url) {
+    };
+export default function doGetDatas(url) {
         return new Promise((resolve, reject) => {
             fetch(url, {
                 credentials: 'same-origin',
@@ -83,5 +82,4 @@ export default {
             .then(response => resolve(response.json()))
             .then(error => reject(error))
         }).catch(err => console.log(err))
-    }
-}
+    };

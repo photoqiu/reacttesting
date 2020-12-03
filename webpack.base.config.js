@@ -88,7 +88,6 @@ const webpackConfigBase = {
             '@ajax': path.join(__dirname, './app/configs/ajax.js'),
             '@regular': path.join(__dirname, './app/configs/regular.config.js'),
             '@images': path.join(__dirname, './app/images'),
-            '@middleware': path.join(__dirname, './app/middleware'),
             '@styles': path.join(__dirname, './app/styles'),
             jQuery: jqueryPath,
             fetch: fetchPath,
