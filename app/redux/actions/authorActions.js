@@ -1,4 +1,4 @@
-import * as async_datas  from '@configs/base.ajax'
+import {doGetDatas}  from '@configs/base.ajax'
 import { login, loginByTicket }  from '@apis/common'
 
 export const ACTION_CONSTANTS = {
@@ -32,7 +32,7 @@ export default function getAuthorResults(query) {
         return async (dispatch, _, { netlifyEndpoint }) => {
             dispatch(actions.fetchingAuthorResult())
             try {
-                const response = async_datas.doGetDatas(login)
+                const response = doGetDatas(login)
                 if (response.ok) {
                     const parsedRes = response.json()
                     return dispatch(actions.receivedAuthorResults(parsedRes.authorResponse.search))
