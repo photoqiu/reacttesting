@@ -53,30 +53,30 @@ const momentPath = path.join(
     __dirname,
     './node_modules/moment/moment.js'
 );
-const localforagePath = path.join(
-    __dirname,
-    './node_modules/localforage/dist/localforage.js'
-);
 
 function resolve(relatedPath) {
     return path.join(__dirname, relatedPath)
 }
+const APP_INDEX_FILE = resolve('./app/index.js');
 
 const webpackConfigBase = {
-    entry: {
-        client: resolve('./app/index.js'),
+    entry:{
+        commons : ['react', 'react-dom', 'react-redux', 'react-router-dom', 'immutable', 'redux-thunk', 'redux-actions', 'redux'],
+        index : [
+            'whatwg-fetch',
+            'fetch-jsonp',
+            APP_INDEX_FILE
+        ]
     },
     output: {
         path: resolve('./dist'),
-        filename: devMode ? './js/[name].[fullhash].js' : './js/[name].[contenthash].js',
-        chunkFilename: devMode ? './js/chunks/[name].[fullhash:4].js' : './js/schunks/[name].[contenthash].js'
+        publicPath: '/',
+        filename: devMode ? '[name].[fullhash:4].js' : '[name].[contenthash].js',
+        chunkFilename: devMode ? '[name].[fullhash:4].js' : '[name].[contenthash].js'
     },
-    resolve: { // 减少后缀
-        extensions: ['.js', '.jsx', '.json'],
-        // modules: [ // 指定以下目录寻找第三方模块，避免webpack往父级目录递归搜索
-        //   resolve('app'),
-        //   resolve('node_modules'),
-        // ],
+    context: __dirname,
+    resolve: {  
+        extensions: ['*', '.less', '.css', '.js', '.jsx', '.json'],
         alias: { // 减少使用别名提高编译速速
             '@app': path.join(__dirname, './app'),
             '@actions': path.join(__dirname, './app/redux/actions'),
@@ -94,7 +94,6 @@ const webpackConfigBase = {
             fetchJsonp: fetchJsonpPath,
             moment: momentPath,
             fontAwesome: fontAwesomePath,
-            localforage: localforagePath,
             'react-dom': devMode ? '@hot-loader/react-dom' : 'react-dom' // react-hot-loader需要
         },
     },
@@ -131,17 +130,15 @@ const webpackConfigBase = {
                 test: /\.js[x]?$/,
                 exclude: /node_modules/,
                 include: [resolve('./app')],
-                // loader: 'babel',
-                //把对.js 的文件处理交给id为happyBabel 的HappyPack 的实例执行
                 use: 'happypack/loader?id=happyBabel'
             },
             {
-                test: /\.(css|less)$/,
-                use: [{
-                        loader: MiniCssExtractPlugin.loader,
+                test: /\.css$/,
+                use: [
+                    {
+                        loader: devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
                         options: {
                             esModule: false,
-                            publicPath: '.',
                             modules: {
                                 namedExport: true,
                             }
@@ -151,12 +148,33 @@ const webpackConfigBase = {
                 ]
             },
             {
+                test: /\.less$/,
+                use: [
+                    {
+                        loader: devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
+                    },
+                    {
+                        loader: "css-loader",
+                    },
+                    {
+                        loader: 'postcss-loader',
+                    },
+                    {
+                        loader: "less-loader",
+                        options: {
+                            lessOptions: {
+                                strictMath: true
+                            }
+                        }
+                    }
+                ]
+            },
+            {
                 test: /\.s[ac]ss$/i,
                 use: [{
-                        loader: MiniCssExtractPlugin.loader,
+                        loader: devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
                         options: {
                             esModule: false,
-                            publicPath: '.',
                             modules: {
                                 namedExport: true,
                             }
@@ -216,14 +234,9 @@ const webpackConfigBase = {
     },
     performance: false,
     plugins: [
-        // // 去除moment的语言包
-        // new webpack.ContextReplacementPlugin(
-        //     /moment[/\\]locale$/,
-        //     /de|fr|hu/
-        // ),
         new MiniCssExtractPlugin({
-            filename: devMode ? './app/styles/style.css' : './app/styles/style.[chunkhash].css',
-            chunkFilename: devMode ? 'css/style.[id].css' : 'css/style.[chunkhash].[id].css'
+            filename: devMode ? 'style.css' : 'style.[chunkhash].css',
+            chunkFilename: devMode ? 'style.[id].css' : 'style.[chunkhash].[id].css'
         }),
         new FriendlyErrorsPlugin(),
         new webpack.ProvidePlugin({
@@ -243,7 +256,17 @@ const webpackConfigBase = {
             //用id来标识 happypack处理那里类文件
             id: 'happyScssStyle',
             //如何处理  用法和loader 的配置一样
-            loaders: ['style-loader', 'css-loader', 'postcss-loader', 'sass-loader'],
+            loaders: ['css-loader', 'postcss-loader', 'sass-loader'],
+            //代表共享进程池，即多个 HappyPack 实例都使用同一个共享进程池中的子进程去处理任务，以防止资源占用过多。
+            threadPool: happyThreadPool,
+            //允许 HappyPack 输出日志
+            verbose: false
+        }),
+        new HappyPack({
+            //用id来标识 happypack处理那里类文件
+            id: 'happyLessStyle',
+            //如何处理  用法和loader 的配置一样
+            loaders: ['css-loader', 'postcss-loader', "less-loader" ],
             //代表共享进程池，即多个 HappyPack 实例都使用同一个共享进程池中的子进程去处理任务，以防止资源占用过多。
             threadPool: happyThreadPool,
             //允许 HappyPack 输出日志
@@ -253,7 +276,7 @@ const webpackConfigBase = {
             //用id来标识 happypack处理那里类文件
             id: 'happyStyle',
             //如何处理  用法和loader 的配置一样
-            loaders: ['style-loader', 'css-loader', 'postcss-loader', 'less-loader'],
+            loaders: ['css-loader', 'postcss-loader'],
             //代表共享进程池，即多个 HappyPack 实例都使用同一个共享进程池中的子进程去处理任务，以防止资源占用过多。
             threadPool: happyThreadPool,
             //允许 HappyPack 输出日志

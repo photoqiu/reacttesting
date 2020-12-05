@@ -73,12 +73,13 @@ const webpackConfigDev = {
         new CleanWebpackPlugin(),
         new webpack.HotModuleReplacementPlugin()
     ],
-    devtool: 'source-map',
+    devtool: "eval-source-map",
     devServer: {
         liveReload: true,
         contentBase: resolve('./app'),
-        publicPath: resolve('./dist'),
+        publicPath: '/',
         historyApiFallback: false,
+        compress: true,
         open: true,
         hot: true,
         inline: false,
