@@ -127,6 +127,7 @@
         "optimize-css-assets-webpack-plugin": "^5.0.4",
         "postcss-loader": "^4.1.0",
         "react-addons-test-utils": "^15.6.2",
+        "redux-devtools": "^3.7.0",
         "sass": "^1.29.0",
         "sass-loader": "^10.1.0",
         "sinon": "^9.2.1",

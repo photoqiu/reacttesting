@@ -6,7 +6,6 @@ import { hot } from 'react-hot-loader/root'
 import '@config'
 import Routes from '@configs/router.config'
 import configure from '@middleware/configureStore'
-import 'bootstrap/dist/css/bootstrap.min.css'
 
 const HotRoutes = hot(Routes)
 const store = configure({})
