@@ -222,13 +222,8 @@ const webpackConfigBase = {
         //     /de|fr|hu/
         // ),
         new MiniCssExtractPlugin({
-<<<<<<< HEAD
-            filename: devMode ? './app/styles/bootstrap.css' : './app/styles/bootstrap.[contenthash].css',
-            chunkFilename: devMode ? 'css/style.[id].css' : 'css/style.[contenthash].[id].css'
-=======
             filename: devMode ? './app/styles/style.css' : './app/styles/style.[chunkhash].css',
             chunkFilename: devMode ? 'css/style.[id].css' : 'css/style.[chunkhash].[id].css'
->>>>>>> cd3a9feea17dfc02620612d5650b213414b33898
         }),
         new FriendlyErrorsPlugin(),
         new webpack.ProvidePlugin({
