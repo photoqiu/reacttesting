@@ -68,8 +68,8 @@ const webpackConfigBase = {
     },
     output: {
         path: resolve('./dist'),
-        filename: devMode ? 'js/[name].[hash].js' : 'js/[name].[contenthash].js',
-        chunkFilename: devMode ? 'chunks/[name].[hash:4].js' : 'chunks/[name].[contenthash].js'
+        filename: devMode ? './js/[name].[fullhash].js' : './js/[name].[contenthash].js',
+        chunkFilename: devMode ? './js/chunks/[name].[fullhash:4].js' : './js/schunks/[name].[contenthash].js'
     },
     resolve: { // 减少后缀
         extensions: ['.js', '.jsx', '.json'],
@@ -88,7 +88,6 @@ const webpackConfigBase = {
             '@ajax': path.join(__dirname, './app/configs/ajax.js'),
             '@regular': path.join(__dirname, './app/configs/regular.config.js'),
             '@images': path.join(__dirname, './app/images'),
-            '@middleware': path.join(__dirname, './app/middleware'),
             '@styles': path.join(__dirname, './app/styles'),
             jQuery: jqueryPath,
             fetch: fetchPath,
@@ -198,7 +197,7 @@ const webpackConfigBase = {
                 options: {
                     limit: 8192,
                     name: '[name].[hash:4].[ext]',
-                    outputPath: '/images/icon'
+                    outputPath: './images/icon'
                 }
             },
             {
@@ -223,8 +222,13 @@ const webpackConfigBase = {
         //     /de|fr|hu/
         // ),
         new MiniCssExtractPlugin({
+<<<<<<< HEAD
             filename: devMode ? './app/styles/bootstrap.css' : './app/styles/bootstrap.[contenthash].css',
             chunkFilename: devMode ? 'css/style.[id].css' : 'css/style.[contenthash].[id].css'
+=======
+            filename: devMode ? './app/styles/style.css' : './app/styles/style.[chunkhash].css',
+            chunkFilename: devMode ? 'css/style.[id].css' : 'css/style.[chunkhash].[id].css'
+>>>>>>> cd3a9feea17dfc02620612d5650b213414b33898
         }),
         new FriendlyErrorsPlugin(),
         new webpack.ProvidePlugin({

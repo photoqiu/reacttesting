@@ -2,7 +2,7 @@ import { applyMiddleware, createStore } from 'redux';
 import { createLogger } from 'redux-logger'
 import { composeWithDevTools } from 'redux-devtools-extension/developmentOnly';
 import { promiseMiddleware, localStorageMiddleware } from './middleware';
-import reducer from './redux/reducers'
+import reducer from './redux/index'
 import { routerMiddleware } from 'react-router-redux'
 import createHistory from 'history/createBrowserHistory'
 

@@ -1,5 +1,4 @@
 import { combineReducers } from 'redux'
-import authorResults from './authorReducer'
+import authorResults from './reducers/authorReducer'
 
 export default combineReducers({ authorResults })
-

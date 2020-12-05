@@ -1,3 +1,6 @@
+import {doGetDatas}  from '@configs/base.ajax'
+import { login, loginByTicket }  from '@apis/common'
+
 export const ACTION_CONSTANTS = {
     AUTHOR_RESULT_FETCHING: 'AUTHOR_RESULT_FETCHING',
     AUTHOR_RESULT_RECEIVED: 'AUTHOR_RESULT_RECEIVED',
@@ -24,21 +27,14 @@ export const actions = {
     },
 }
   
-export default function getAuthorResults(query, search = 'all', page = 1) {
+export default function getAuthorResults(query) {
     return function (signal) {
         return async (dispatch, _, { netlifyEndpoint }) => {
-            dispatch(actions.fetchingSearchResult())
+            dispatch(actions.fetchingAuthorResult())
             try {
-                const getAuthorUrl = new URL('/.netlify/functions/search', netlifyEndpoint)
-                const params = {
-                    q: query,
-                    page,
-                    search,
-                }
-                getAuthorUrl.search = new URLSearchParams(params)
-                const response = await fetch(getAuthorUrl, { signal })
+                const response = doGetDatas(login)
                 if (response.ok) {
-                    const parsedRes = await response.json()
+                    const parsedRes = response.json()
                     return dispatch(actions.receivedAuthorResults(parsedRes.authorResponse.search))
                 }
                 throw new Error('author api error')

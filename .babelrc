@@ -2,7 +2,7 @@
     "presets": [
 		  ["@babel/preset-env",
 		{
-        	useBuiltIns: 'usage',
+        	'useBuiltIns': 'usage',
         	"targets": {
           		"chrome": "49",
           		"ie": "11"

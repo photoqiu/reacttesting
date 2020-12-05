@@ -65,15 +65,19 @@ const webpackConfigDev = {
         }),
         // 将打包后的资源注入到html文件内    
         new HtmlWebpackPlugin({
-            template: resolve('./app/templates/index.html'),
-            dlls: [],
+            title: 'React Dev Custom template',
+            inject: true,
+            filename: 'index.html',
+            template: resolve('./app/templates/index.html')
         }),
         new CleanWebpackPlugin(),
         new webpack.HotModuleReplacementPlugin()
     ],
     devtool: 'source-map',
     devServer: {
+        liveReload: true,
         contentBase: resolve('./app'),
+        publicPath: resolve('./dist'),
         historyApiFallback: false,
         open: true,
         hot: true,
