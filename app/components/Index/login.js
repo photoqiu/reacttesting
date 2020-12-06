@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { hashHistory/* , Link */ } from 'react-router'
 import { Spin, Form, Icon, Input, Button, Row, Col, message } from 'antd'
-import header from '../departments/header'
+import Header from '../departments/header'
 
 export default class Login extends Component {
 
@@ -22,7 +22,7 @@ export default class Login extends Component {
     render() {
         return (
             <div className="container">
-                <header />
+                <Header />
             </div>
         )
     }

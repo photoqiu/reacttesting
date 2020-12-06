@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { hashHistory/* , Link */ } from 'react-router'
-import header from '../departments/header'
+import Header from '../departments/header'
 import { Spin, Form, Icon, Input, Button, Row, Col, message } from 'antd'
 
 export default class Index extends Component {
@@ -22,7 +22,7 @@ export default class Index extends Component {
     render() {
         return (
             <div className="container">
-                <header />
+                <Header />
             </div>
         )
     }

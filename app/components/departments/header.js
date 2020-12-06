@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { hashHistory/* , Link */ } from 'react-router'
 import { Spin, Form, Icon, Input, Button, Row, Col, message } from 'antd'
+import './header.less'
 
 export default class Header extends Component {
 
@@ -22,14 +23,7 @@ export default class Header extends Component {
         return (
             <header id="site-header">
                 <div className="row">
-                    <div className="col-md-4">
-                        <div className="logo">
-                            <h1><a href="index.html"><b>Photoqiu</b> &amp; Life</a></h1>
-                        </div>
-                    </div>
-                    <div className="col-md-8">
-
-                    </div>
+                    <h1>Headers</h1>
                 </div>
             </header>
         )

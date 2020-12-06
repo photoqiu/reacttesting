@@ -1,15 +1,26 @@
 import React from "react"
 import { BrowserRouter as Router, Route, Switch, Link, Redirect,  useLocation } from "react-router-dom"
-import app from '@components/index/app'
-import login from '@components/index/login'
-import error from '@components/index/error'
+// import Error from '@components/Index/error'
+// import Login from '@components/Index/login'
+import Index from '@components/Index/index'
+const Error = () => <h1>Error</h1>
+const Login = () => <h1>Login</h1>
 
-export default () => (
-    <Router>
-        <Switch>
-            <Route exact path="/" component={app} />
-            <Route path="/login" component={login} />
-            <Route path="*" component={error} />
-        </Switch>
-    </Router>
-)
+class RouteConfig extends React.Component {
+    render() {
+        return (
+            <Router>
+                <Switch>
+                    <Route path="/" exact component={Index} />
+                    <Route path="/login" component={Login} />
+                    <Route path="*" component={Error} />
+                </Switch>
+            </Router>
+        );
+    }
+}
+console.log('App', Router);
+console.log('App', Switch);
+console.log('App', Route);
+console.log('App', Index);
+export default RouteConfig;

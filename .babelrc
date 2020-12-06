@@ -2,7 +2,7 @@
     "presets": [
 		  ["@babel/preset-env",
 		{
-        	'useBuiltIns': 'usage',
+        	"useBuiltIns" : "usage",
         	"targets": {
           		"chrome": "49",
           		"ie": "11"
@@ -12,21 +12,19 @@
       	"@babel/preset-react"
     ],
     "plugins": [
-      	["@babel/plugin-transform-runtime",{
+		["@babel/plugin-syntax-dynamic-import"],
+		["react-hot-loader/babel"],
+		["@babel/plugin-proposal-class-properties"],
+      	["@babel/plugin-transform-runtime", {
         	"absoluteRuntime": false,
         	"corejs": 3,
         	"helpers": true,
         	"regenerator": true,
         	"useESModules": false
 		}],
-		["react-hot-loader/babel"],
-      	[
-        	"@babel/plugin-proposal-decorators",
-        	{
+      	["@babel/plugin-proposal-decorators", {
           		"legacy": true
-        	}
-      	],
-      	"@babel/plugin-proposal-class-properties",
+        }],
       	["import", {
         	"libraryName": "antd",
         	"libraryDirectory": "es",
