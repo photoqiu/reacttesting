@@ -7,6 +7,7 @@ import '@config'
 import Routes from '@configs/router.config'
 import configuares from './redux/middleware'
 
+
 const HotRoutes = hot(Routes)
 const stores = configuares({})
 

@@ -131,20 +131,16 @@ const webpackConfigBase = {
                 test: /\.js[x]?$/,
                 exclude: /node_modules/,
                 include: [resolve('./app')],
-                // loader: 'babel',
                 //把对.js 的文件处理交给id为happyBabel 的HappyPack 的实例执行
                 use: 'happypack/loader?id=happyBabel'
             },
             {
                 test: /\.(css|less)$/,
-                use: [{
-                        loader: MiniCssExtractPlugin.loader,
-                        options: {
-                            hmr: devMode,
-                            reloadAll: devMode,
-                        },
+                use: [
+                    {
+                        loader: devMode ? 'style-loader' : MiniCssExtractPlugin.loader
                     },
-                    'happypack/loader?id=happyStyle',
+                    'happypack/loader?id=happyStyle'
                 ]
             },
             {
@@ -168,7 +164,7 @@ const webpackConfigBase = {
                 options: {
                     limit: 8192,
                     name: '[name].[hash:4].[ext]',
-                    outputPath: '/images'
+                    outputPath: './images'
                 }
             },
             {
@@ -187,7 +183,7 @@ const webpackConfigBase = {
                 loader: 'url-loader',
                 options: {
                     limit: 8192,
-                    name: 'font/[name].[hash:4].[ext]'
+                    name: './fonts/[name].[hash:4].[ext]'
                 }
             },
             {
@@ -204,6 +200,7 @@ const webpackConfigBase = {
         //     /de|fr|hu/
         // ),
         new MiniCssExtractPlugin({
+            linkType: 'text/css',
             filename: devMode ? './app/styles/style.css' : './app/styles/style.[chunkhash].css',
             chunkFilename: devMode ? 'css/style.[id].css' : 'css/style.[chunkhash].[id].css'
         }),
@@ -225,7 +222,7 @@ const webpackConfigBase = {
             //用id来标识 happypack处理那里类文件
             id: 'happyStyle',
             //如何处理  用法和loader 的配置一样
-            loaders: ['style-loader', 'css-loader', 'postcss-loader', 'less-loader'],
+            loaders: ['css-loader', 'postcss-loader', 'less-loader'],
             //代表共享进程池，即多个 HappyPack 实例都使用同一个共享进程池中的子进程去处理任务，以防止资源占用过多。
             threadPool: happyThreadPool,
             //允许 HappyPack 输出日志

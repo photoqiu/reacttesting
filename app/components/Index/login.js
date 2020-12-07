@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { hashHistory/* , Link */ } from 'react-router'
 import { Spin, Form, Icon, Input, Button, Row, Col, message } from 'antd'
 import header from '../departments/header'
+import './login.less'
 
 export default class Login extends Component {
 
