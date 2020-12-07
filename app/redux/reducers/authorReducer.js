@@ -1,4 +1,5 @@
-import { ACTION_CONSTANTS } from '../actions/authorActions'
+import { ACTION_CONSTANTS } from '../actions/action-type';
+import Immutable from 'immutable';
 
 export const initialState = {
     fetching: false,
@@ -6,7 +7,7 @@ export const initialState = {
     results: {},
 }
 
-export default function reducer(state = initialState, action) {
+export default function authorResults(state = initialState, action) {
   switch (action.type) {
     case ACTION_CONSTANTS.AUTHOR_RESULT_FETCHING:
         return {
