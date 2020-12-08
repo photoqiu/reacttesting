@@ -1,17 +1,19 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { hashHistory/* , Link */ } from 'react-router'
-import Header from '../departments/header'
+import {
+    BrowserRouter as Router,
+    NavLink
+} from "react-router-dom";
 import { Spin, Form, Icon, Input, Button, Row, Col, message } from 'antd'
 
 export default class Index extends Component {
 
-    constructor(props, context) {
-        super(props)
+    constructor() {
+        super()
         this.state = {
             loading: false,
-            isCertificates: false,
             show: true,
+            index_datas:[]
         }
     }
 
@@ -22,7 +24,15 @@ export default class Index extends Component {
     render() {
         return (
             <div className="container">
-                <Header />
+                <header id="site-header">
+                    <Router>
+                        <div className="row">
+                            <h1>Headers</h1>
+                            <NavLink to="/">Home</NavLink>
+                            <NavLink to="/login">login</NavLink>
+                        </div>
+                    </Router>
+                </header>
             </div>
         )
     }
