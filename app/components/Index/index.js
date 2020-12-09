@@ -5,6 +5,7 @@ import {
     NavLink
 } from "react-router-dom";
 import { Spin, Form, Icon, Input, Button, Row, Col, message } from 'antd'
+import BlogPosts from '@components/departments/blogPosts'
 
 export default class Index extends Component {
 
@@ -29,10 +30,11 @@ export default class Index extends Component {
                         <div className="row">
                             <h1>Headers</h1>
                             <NavLink to="/">Home</NavLink>
-                            <NavLink to="/login">login</NavLink>
+                            <NavLink to="login">login</NavLink>
                         </div>
                     </Router>
                 </header>
+                <BlogPosts />
             </div>
         )
     }
