@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { hashHistory/* , Link */ } from 'react-router'
-import Header from '../departments/header'
 import { Spin, Form, Icon, Input, Button, Row, Col, message } from 'antd'
 
 export default class Index extends Component {
@@ -10,19 +9,18 @@ export default class Index extends Component {
         super(props)
         this.state = {
             loading: false,
-            isCertificates: false,
-            show: true,
+            show: true
         }
     }
 
     componentDidMount() {
-
+        console.log(this.props.match.params);
     }
 
     render() {
         return (
             <div className="container">
-                <Header />
+                <Headers />
             </div>
         )
     }
