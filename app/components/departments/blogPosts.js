@@ -4,13 +4,12 @@ import { hashHistory/* , Link */ } from 'react-router'
 import { Spin, Form, Icon, Input, Button, Row, Col, message } from 'antd'
 
 export default class BlogPosts extends Component {
-
-    constructor(props, context) {
+    constructor(props) {
         super(props)
         this.state = {
             loading: false,
-            isCertificates: false,
-            show: true,
+            post_datas: [],
+            show: true
         }
     }
 
@@ -19,8 +18,6 @@ export default class BlogPosts extends Component {
     }
 
     render() {
-        const { getFieldDecorator } = this.props.form
-        console.log(this.props.loginResponse)
         return (
             <article className="post post-1">
                 <header className="entry-header">

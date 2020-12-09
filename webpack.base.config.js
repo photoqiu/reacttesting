@@ -71,8 +71,8 @@ const webpackConfigBase = {
     output: {
         path: resolve('./dist'),
         publicPath: '/',
-        filename: devMode ? '[name].[fullhash:4].js' : '[name].[contenthash].js',
-        chunkFilename: devMode ? '[name].[fullhash:4].js' : '[name].[contenthash].js'
+        filename: devMode ? '[name].libs.js' : '[name].[contenthash].js',
+        chunkFilename: devMode ? '[id].chunk.js' : '[id].[contenthash].js'
     },
     context: __dirname,
     resolve: {  
@@ -114,6 +114,12 @@ const webpackConfigBase = {
                     priority: -20, // 优先级
                     reuseExistingChunk: true, // 默认使用已有的模块
                 },
+                "draft-js": {
+                    test: /[\\/]node_modules[\\/]draft-js/,
+                    name: 'draft-js',
+                    priority: 18,
+                    reuseExistingChunk: true,
+                },
                 vendor: {
                     test: /[\\/]node_modules[\\/]/,
                     name: 'vendor',
@@ -136,12 +142,10 @@ const webpackConfigBase = {
                 test: /\.css$/,
                 use: [
                     {
-                        loader: devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
+                        loader: MiniCssExtractPlugin.loader,
                         options: {
-                            esModule: false,
-                            modules: {
-                                namedExport: true,
-                            }
+                            hmr: devMode,
+                            reloadAll: devMode,
                         }
                     },
                     'happypack/loader?id=happyStyle'
@@ -151,10 +155,22 @@ const webpackConfigBase = {
                 test: /\.less$/,
                 use: [
                     {
-                        loader: devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
+                        loader: MiniCssExtractPlugin.loader,
+                        options: {
+                            publicPath: './css',
+                        }
                     },
                     {
                         loader: "css-loader",
+                        options: {
+                            sourceMap: true,
+                            modules: true,
+                            esModule: true,
+                            modules: {
+                                namedExport: true,
+                            },
+                            importLoaders: 2
+                        }
                     },
                     {
                         loader: 'postcss-loader',
@@ -163,6 +179,8 @@ const webpackConfigBase = {
                         loader: "less-loader",
                         options: {
                             lessOptions: {
+                                sourceMap: true,
+                                paths: [resolve("./node_modules"), resolve("./app")],
                                 strictMath: true
                             }
                         }
@@ -236,7 +254,7 @@ const webpackConfigBase = {
     plugins: [
         new MiniCssExtractPlugin({
             linkType: 'text/css',
-            filename: devMode ? './app/styles/style.css' : './app/styles/style.[chunkhash].css',
+            filename: devMode ? 'css/style.css' : 'css/[name].[contenthash].css',
             chunkFilename: devMode ? 'css/style.[id].css' : 'css/style.[chunkhash].[id].css'
         }),
         new FriendlyErrorsPlugin(),
@@ -285,5 +303,9 @@ const webpackConfigBase = {
         }),
         new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
     ]
+}
+
+if (devMode) {
+    webpackConfigBase.plugins.push(new webpack.HotModuleReplacementPlugin());
 }
 module.exports = webpackConfigBase;

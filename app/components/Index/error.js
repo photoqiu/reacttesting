@@ -6,12 +6,12 @@ import Headers from '@components/departments/headers'
 
 export default class Error extends Component {
 
-    constructor(props, context) {
-        super(props)
+    constructor() {
+        super()
         this.state = {
             loading: false,
-            isCertificates: false,
             show: true,
+            error_datas:[]
         }
     }
 

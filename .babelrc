@@ -6,7 +6,8 @@
         	"targets": {
           		"chrome": "49",
           		"ie": "11"
-        	},
+			},
+			"modules": "umd",
         	"corejs": 3
       	}],
       	"@babel/preset-react"

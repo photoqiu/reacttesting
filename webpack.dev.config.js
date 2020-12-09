@@ -36,7 +36,7 @@ let selfIp
 try {
     selfIp = getIpAddress()
 } catch (e) {
-    selfIp = 'localhost'
+    selfIp = '127.0.0.1'
 }
 const PORT = 3699
 // 精确的获取本机ip地址
