@@ -22,7 +22,7 @@ class MainHeaders extends Component {
                 <Router>
                     <h1>photoqiu~!Blog</h1>
                     <Link to="/">Home</Link>
-                    <Link to="/login">login</Link>
+                    <Link to="login">login</Link>
                 </Router>
             </div>
         )

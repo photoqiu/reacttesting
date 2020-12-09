@@ -19,7 +19,7 @@ export default class Index extends Component {
     }
 
     componentDidMount() {
-
+        console.log(this.props.match.params);
     }
 
     render() {
@@ -30,7 +30,7 @@ export default class Index extends Component {
                         <div className="row">
                             <h1>Headers</h1>
                             <NavLink to="/">Home</NavLink>
-                            <NavLink to="/login">login</NavLink>
+                            <NavLink to="login">login</NavLink>
                         </div>
                     </Router>
                 </header>
