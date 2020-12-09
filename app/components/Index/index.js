@@ -5,6 +5,7 @@ import {
     NavLink
 } from "react-router-dom";
 import { Spin, Form, Icon, Input, Button, Row, Col, message } from 'antd'
+import BlogPosts from '@components/departments/blogPosts'
 
 export default class Index extends Component {
 
@@ -33,6 +34,7 @@ export default class Index extends Component {
                         </div>
                     </Router>
                 </header>
+                <BlogPosts />
             </div>
         )
     }
