@@ -84,4 +84,4 @@ function doGetDatas(url) {
     }).catch(err => console.log(err))
 };
 
-export {doJsonpDatas, doGetDatas, doPostRawDatas, doPostDatas, doFormPostDatas, doFormPostRawDatas}
+export { doJsonpDatas, doGetDatas, doPostRawDatas, doPostDatas, doFormPostDatas, doFormPostRawDatas }

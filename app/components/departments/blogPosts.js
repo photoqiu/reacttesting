@@ -26,7 +26,7 @@ export default class BlogPosts extends Component {
                     </h1>
                     <div className="entry-meta">
                         <span className="post-category"><a href="#">Django 博客教程</a></span>
-                        <span className="post-date"><a href="#"><time className="entry-date" datetime="2012-11-09T23:15:57+00:00">2017年5月11日</time></a></span>
+                        <span className="post-date"><a href="#"><time className="entry-date" dateTime="2012-11-09T23:15:57+00:00">2017年5月11日</time></a></span>
                         <span className="post-author"><a href="#">追梦人物</a></span>
                         <span className="comments-link"><a href="#">4 评论</a></span>
                         <span className="views-count"><a href="#">588 阅读</a></span>

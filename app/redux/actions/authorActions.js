@@ -28,11 +28,11 @@ export default function getAuthorResults(query) {
     return function (signal) {
         return async (dispatch, _, { netlifyEndpoint }) => {
             dispatch(actions.fetchingAuthorResult())
-            try {
+            try {datas
                 const response = doGetDatas(login)
                 if (response.ok) {
                     const parsedRes = response.json()
-                    return dispatch(actions.receivedAuthorResults(parsedRes.authorResponse.search))
+                    return dispatch(actions.receivedAuthorResults(parsedRes.data))
                 }
                 throw new Error('author api error')
             } catch (error) {

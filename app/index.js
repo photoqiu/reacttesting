@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
 import { hot } from 'react-hot-loader/root'
 import RouteConfig from '@configs/router.config'
-import {stores} from './redux/middleware'
+import {stores} from './store'
 
 const HotRoutes = hot(RouteConfig)
 
