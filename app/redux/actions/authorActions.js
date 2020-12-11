@@ -1,8 +1,10 @@
 import {doGetDatas}  from '@configs/base.ajax'
 import { ACTION_CONSTANTS } from './action-type';
 import { login, loginByTicket }  from '@apis/common'
+import '@datas/tables'
+import '@datas/users'
 
-
+console.log("login:", login)
   
 export const actions = {
     receivedAuthorResults: function (result) {

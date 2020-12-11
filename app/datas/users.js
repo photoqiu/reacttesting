@@ -4,12 +4,12 @@ Mock.setup({
     timeout: '1200-1600'
 })
 const url = {
-    tableDataOne: 'http://127.0.0.1/mode1/tableDataOne',
-    tableDataTwo: 'http://127.0.0.1/mode1/tableDataTwo',
-    tableDataThi: 'http://127.0.0.1/mode1/tableDataThi',
+    usersDataOne: 'http://127.0.0.1:3699/mode1/usersDataOne',
+    usersDataTwo: 'http://127.0.0.1:3699/mode2/usersDataTwo',
+    usersDataThi: 'http://127.0.0.1:3699/mode3/usersDataThi',
 }
 module.exports = [
-    Mock.mock(url.tableDataOne, {
+    Mock.mock(url.usersDataOne, {
         'dataSource|5':[{
             'key|+1': 1,
             'mockTitle|1':['哑巴', 'Butter-fly', '肆无忌惮', '摩天大楼', '初学者'],

@@ -3,11 +3,24 @@ import { connect } from 'react-redux'
 import {
     BrowserRouter as Router,
     NavLink
-} from "react-router-dom";
+} from "react-router-dom"
+import { bindActionCreators } from 'redux'
+import getAuthorResults from '@actions/authorActions'
 import { Spin, Form, Icon, Input, Button, Row, Col, message } from 'antd'
 import BlogPosts from '@components/departments/blogPosts'
 
-export default class Index extends Component {
+
+function mapStateToProps(state) {
+    return { index_datas: state.result };
+  }
+  
+function mapDispatchToProps(dispatch) {
+    return {
+        getAuthorResults: bindActionCreators(getAuthorResults, dispatch)
+    };
+}
+
+class Index extends Component {
 
     constructor() {
         super()
@@ -38,5 +51,6 @@ export default class Index extends Component {
             </div>
         )
     }
-
 }
+
+export default connect(mapStateToProps, mapDispatchToProps)(Index);

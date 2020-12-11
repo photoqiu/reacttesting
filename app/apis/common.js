@@ -1,5 +1,4 @@
-import { createApi } from '@ajax'
-import { mockURL, path } from '@config'
+import { mockURL, path } from '@configURL'
 
 
 const prefixUsers = 'usercenter'
