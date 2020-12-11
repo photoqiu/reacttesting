@@ -139,6 +139,11 @@ const webpackConfigBase = {
                 use: 'happypack/loader?id=happyBabel'
             },
             {
+                test: /\.tsx?$/i,
+                use: 'happypack/loader?id=happyTSBabel',
+                exclude: /node_modules/
+            },
+            {
                 test: /\.css$/,
                 use: [
                     {
@@ -268,6 +273,12 @@ const webpackConfigBase = {
         new HappyPack({
             id: 'happyBabel',
             loaders: ['babel-loader?cacheDirectory=true'],
+            threadPool: happyThreadPool,
+            verbose: false
+        }),
+        new HappyPack({
+            id: 'happyTSBabel',
+            loaders: ['ts-loader'],
             threadPool: happyThreadPool,
             verbose: false
         }),

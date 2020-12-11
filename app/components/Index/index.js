@@ -9,9 +9,8 @@ import getAuthorResults from '@actions/authorActions'
 import { Spin, Form, Icon, Input, Button, Row, Col, message } from 'antd'
 import BlogPosts from '@components/departments/blogPosts'
 
-
 function mapStateToProps(state) {
-    return { index_datas: state.result };
+    return { index_datas: state.authorResults.results };
   }
   
 function mapDispatchToProps(dispatch) {

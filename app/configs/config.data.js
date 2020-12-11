@@ -8,14 +8,14 @@ let _baseURL = `${_serverIp}:${_port}`
 let _mockURL = 'http://127.0.0.1:3699/'
 
 if (process.env.NODE_ENV === 'testing') { // 测试环境
-    _serverIp = 'http://127.0.0.1:3699/'
+    _mockURL = 'http://127.0.0.1:3699/'
     _port = '3699'
-    _baseURL = `${_serverIp}:${_port}`
+    _baseURL = `${_mockURL}`
 }
 if (process.env.NODE_ENV === 'development') { // 开发环境
-    _serverIp = 'http://127.0.0.1:3699/'
+    _mockURL = 'http://127.0.0.1:3699/'
     _port = '3699'
-    _baseURL = `${_serverIp}:${_port}`
+    _baseURL = `${_mockURL}`
 }
 if (process.env.NODE_ENV === 'production') { // 发布环境
     _port = '3699'

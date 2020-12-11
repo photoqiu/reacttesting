@@ -1,12 +1,12 @@
 import Mock from 'mockjs'
-
+import { baseURL } from '@config'
 Mock.setup({
     timeout: '1200-1600'
 })
 const url = {
-    tableDataOne: 'http://127.0.0.1:3699/mock/usercenter/login',
-    tableDataTwo: 'http://127.0.0.1:3699/mode2/tableDataTwo',
-    tableDataThi: 'http://127.0.0.1:3699/mode3/tableDataThi',
+    tableDataOne: `${baseURL}mode1/tableDataOne`,
+    tableDataTwo: `${baseURL}mode1/tableDataTwo`,
+    tableDataThi: `${baseURL}mode1/tableDataThi`
 }
 module.exports = [
     Mock.mock(url.tableDataOne, {
