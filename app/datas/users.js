@@ -1,15 +1,17 @@
 import Mock from 'mockjs'
+import { baseURL } from '@config'
 
 Mock.setup({
     timeout: '1200-1600'
 })
+const prefixUsers = 'usercenter'
 const url = {
-    tableDataOne: 'http://127.0.0.1/mode1/tableDataOne',
-    tableDataTwo: 'http://127.0.0.1/mode1/tableDataTwo',
-    tableDataThi: 'http://127.0.0.1/mode1/tableDataThi',
+    login: `${baseURL}${prefixUsers}/login`,
+    usersDataTwo: `${baseURL}${prefixUsers}/logout`,
+    usersDataThi: `${baseURL}${prefixUsers}/registers`,
 }
 module.exports = [
-    Mock.mock(url.tableDataOne, {
+    Mock.mock(url.login, {
         'dataSource|5':[{
             'key|+1': 1,
             'mockTitle|1':['哑巴', 'Butter-fly', '肆无忌惮', '摩天大楼', '初学者'],

@@ -7,7 +7,21 @@ import {
 import { Spin, Form, Icon, Input, Button, Row, Col, message } from 'antd'
 import BlogPosts from '@components/departments/blogPosts'
 
-export default class Index extends Component {
+// mapStateToProps 编写方式
+const mapStateToProps = (state) => {
+    return {
+        index_datas: state.authorResults.results
+    }
+}
+
+// mapDispatchToProps 编写方式
+const mapDispatchToProps = (dispatch) => {
+    return {
+        createAction: text => dispatch(fetchingAuthorResult(field))
+    }
+}
+
+class Index extends Component {
 
     constructor() {
         super()
@@ -38,5 +52,6 @@ export default class Index extends Component {
             </div>
         )
     }
-
 }
+
+export default connect(mapStateToProps, mapDispatchToProps)(Index);
