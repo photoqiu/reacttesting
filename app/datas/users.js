@@ -7,11 +7,11 @@ Mock.setup({
 const prefixUsers = 'usercenter'
 const url = {
     login: `${baseURL}${prefixUsers}/login`,
-    usersDataTwo: `${baseURL}${prefixUsers}/logout`,
-    usersDataThi: `${baseURL}${prefixUsers}/registers`,
+    logout: `${baseURL}${prefixUsers}/logout`,
+    register: `${baseURL}${prefixUsers}/registers`
 }
 module.exports = [
-    Mock.mock(url.login, {
+    Mock.mock(url.login, 'GET', {
         'dataSource|5':[{
             'key|+1': 1,
             'mockTitle|1':['哑巴', 'Butter-fly', '肆无忌惮', '摩天大楼', '初学者'],

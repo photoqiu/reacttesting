@@ -9,7 +9,7 @@ const url = {
     tableDataThi: `${baseURL}mode1/tableDataThi`
 }
 module.exports = [
-    Mock.mock(url.tableDataOne, {
+    Mock.mock(url.tableDataOne, 'GET', {
         'dataSource|5':[{
             'key|+1': 1,
             'mockTitle|1':['哑巴', 'Butter-fly', '肆无忌惮', '摩天大楼', '初学者'],

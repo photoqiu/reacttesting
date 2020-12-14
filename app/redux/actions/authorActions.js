@@ -4,8 +4,6 @@ import { login, loginByTicket }  from '@apis/common'
 import '@datas/tables'
 import '@datas/users'
 
-console.log("login:", login)
-  
 export const actions = {
     receivedAuthorResults: function (result) {
         return {
@@ -27,6 +25,7 @@ export const actions = {
 }
   
 export default function getAuthorResults(query) {
+    console.log("login:", login)
     return function (signal) {
         return async (dispatch, _, { netlifyEndpoint }) => {
             dispatch(actions.fetchingAuthorResult())
