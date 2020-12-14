@@ -1,5 +1,5 @@
 import Mock from 'mockjs'
-import { baseURL } from '@config'
+import { baseURL } from '@configURL'
 Mock.setup({
     timeout: '1200-1600'
 })

@@ -1,4 +1,4 @@
-import { baseURL, path } from '@config'
+import { baseURL, path } from '@configURL'
 
 const prefixUsers = 'usercenter'
 
