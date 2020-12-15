@@ -15,8 +15,9 @@ function mapStateToProps(state) {
   
 function mapDispatchToProps(dispatch) {
     return {
-        getAuthorResults: bindActionCreators(getAuthorResults, dispatch)
-    };
+        dispatch,
+        ...bindActionCreators({ getAuthorResults }, dispatch)
+    }
 }
 
 class Index extends Component {
@@ -31,7 +32,7 @@ class Index extends Component {
     }
 
     componentDidMount() {
-        console.log(this.props.match.params);
+        console.log("this.props.match.params:", this.props.match.params);
     }
 
     render() {
