@@ -11,7 +11,7 @@ import BlogPosts from '@components/departments/blogPosts'
 
 function mapStateToProps(state) {
     return { index_datas: state.authorResults.results };
-  }
+}
   
 function mapDispatchToProps(dispatch) {
     return {
@@ -38,15 +38,6 @@ class Index extends Component {
     render() {
         return (
             <div className="container">
-                <header id="site-header">
-                    <Router>
-                        <div className="row">
-                            <h1>Headers</h1>
-                            <NavLink to="/">Home</NavLink>
-                            <NavLink to="login">login</NavLink>
-                        </div>
-                    </Router>
-                </header>
                 <BlogPosts />
             </div>
         )

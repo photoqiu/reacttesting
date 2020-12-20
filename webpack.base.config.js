@@ -149,20 +149,33 @@ const webpackConfigBase = {
                     {
                         loader: MiniCssExtractPlugin.loader,
                         options: {
-                            hmr: devMode,
-                            reloadAll: devMode,
+                            publicPath: './css',
                         }
                     },
-                    'happypack/loader?id=happyStyle'
+                    {
+                        loader: "css-loader",
+                        options: {
+                            sourceMap: true,
+                            modules: true,
+                            esModule: true,
+                            modules: {
+                                namedExport: true,
+                            },
+                            importLoaders: 2
+                        }
+                    },
+                    {
+                        loader: 'postcss-loader',
+                    }
                 ]
             },
             {
                 test: /\.less$/,
                 use: [
                     {
-                        loader: MiniCssExtractPlugin.loader,
-                        options: {
-                            publicPath: './css',
+                        loader: devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
+                        options: devMode ? {} : {
+                            publicPath: './css'
                         }
                     },
                     {
@@ -186,7 +199,8 @@ const webpackConfigBase = {
                             lessOptions: {
                                 sourceMap: true,
                                 paths: [resolve("./node_modules"), resolve("./app")],
-                                strictMath: true
+                                javascriptEnabled: true,
+                                strictMath: false
                             }
                         }
                     }
@@ -259,7 +273,7 @@ const webpackConfigBase = {
     plugins: [
         new MiniCssExtractPlugin({
             linkType: 'text/css',
-            filename: devMode ? 'css/style.css' : 'css/[name].[contenthash].css',
+            filename: devMode ? 'css/style.[contenthash].css' : 'css/[name].[contenthash].css',
             chunkFilename: devMode ? 'css/style.[id].css' : 'css/style.[chunkhash].[id].css'
         }),
         new FriendlyErrorsPlugin(),
