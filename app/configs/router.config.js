@@ -27,6 +27,6 @@ export default function RouteConfig() {
                     <Footer>Footer</Footer>
             </Layout>
             </>
-    </Router>
+        </Router>
     )
 }

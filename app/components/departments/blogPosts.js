@@ -47,7 +47,6 @@ export default class BlogPosts extends Component {
                 <div className="entry-content clearfix">
                     <p>免费、中文、零基础，完整的项目，基于最新版 Django 1.10 和 Python 3.5。带你从零开始一步步开发属于自己的博客网站，帮助你以最快的速度掌握 Django
                         开发的技巧...</p>
-                    <p>
                     <Highlight {...defaultProps} code={exampleCode} language="jsx">
                         {({ className, style, tokens, getLineProps, getTokenProps }) => (
                         <pre className={className} style={style}>
@@ -64,7 +63,6 @@ export default class BlogPosts extends Component {
                         </pre>
                         )}
                     </Highlight>
-                    </p>
                     <div className="read-more cl-effect-14">
                         <a href="#" className="more-link">继续阅读 <span className="meta-nav">→</span></a>
                     </div>
