@@ -4,6 +4,7 @@ import { Provider } from 'react-redux'
 import { hot } from 'react-hot-loader/root'
 import RouteConfig from '@configs/router.config'
 import {stores} from './store'
+import 'bootstrap/dist/css/bootstrap.css';
 
 const HotRoutes = hot(RouteConfig)
 

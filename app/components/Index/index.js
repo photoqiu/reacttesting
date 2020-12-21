@@ -12,7 +12,7 @@ import { writeStorage, deleteFromStorage, useLocalStorage } from '@rehooks/local
 
 function mapStateToProps(state) {
     return { index_datas: state.authorResults.results };
-  }
+}
   
 function mapDispatchToProps(dispatch) {
     return {
@@ -39,15 +39,6 @@ r
     render() {
         return (
             <div className="container">
-                <header id="site-header">
-                    <Router>
-                        <div className="row">
-                            <h1>Headers</h1>
-                            <NavLink to="/">Home</NavLink>
-                            <NavLink to="login">login</NavLink>
-                        </div>
-                    </Router>
-                </header>
                 <BlogPosts />
             </div>
         )
