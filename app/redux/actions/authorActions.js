@@ -22,6 +22,11 @@ export const actions = {
             error
         }
     },
+    getAuthorResult: function (error) {
+        return {
+            type: ACTION_CONSTANTS.GET_AUTHOR_RESULT
+        }
+    }
 }
   
 export default function getAuthorResults(query) {
@@ -29,7 +34,7 @@ export default function getAuthorResults(query) {
     return function (signal) {
         return async (dispatch, _, { netlifyEndpoint }) => {
             dispatch(actions.fetchingAuthorResult())
-            try {datas
+            try {
                 const response = doGetDatas(login)
                 if (response.ok) {
                     const parsedRes = response.json()
