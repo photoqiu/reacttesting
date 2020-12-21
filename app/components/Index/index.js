@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
+import { connect, useDispatch } from 'react-redux'
 import {
     BrowserRouter as Router,
     NavLink
@@ -8,6 +8,7 @@ import { bindActionCreators } from 'redux'
 import getAuthorResults from '@actions/authorActions'
 import { Spin, Form, Icon, Input, Button, Row, Col, message } from 'antd'
 import BlogPosts from '@components/departments/blogPosts'
+import { writeStorage, deleteFromStorage, useLocalStorage } from '@rehooks/local-storage'
 
 function mapStateToProps(state) {
     return { index_datas: state.authorResults.results };
@@ -21,7 +22,7 @@ function mapDispatchToProps(dispatch) {
 }
 
 class Index extends Component {
-
+r
     constructor() {
         super()
         this.state = {
