@@ -1,5 +1,4 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
+import React,  { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { Link } from 'react-router'
 import { Spin, Form, Icon, Input, Button, Row, Col, message } from 'antd'
@@ -10,9 +9,10 @@ import { Pre, Line, LineNo, LineContent } from "./styles"
 
 
 export default () => {
+    const [lists, setLists] = useState([])
 
+    const listdatas = useSelector(state => state.listdatas)
     const dispatch = useDispatch()
-
     const exampleCode = `
     (function someDemo() {
       var test = "Hello World!";
@@ -21,9 +21,15 @@ export default () => {
     
     return () => <App />;
     `;
-    
+    const addTodoList = () => {
+        dispatch({
+            type: ACTION_CONSTANTS.GET_AUTHOR_RESULT,
+            payload: { listName }
+        });
+    };
+
     return (
-        <article className="post post-1">
+        <article className="post post-1" loaded="addTodoList()">
             <header className="entry-header">
                 <h1 className="entry-title">
                     <a href="single.html">Django 博客开发入门教程：前言</a>

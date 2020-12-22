@@ -234,7 +234,7 @@ const webpackConfigBase = {
                 }
             },
             {
-                test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
+                test: /\.(png|jpe?g|gif)(\?.*)?$/,
                 exclude: /node_modules/,
                 include: [resolve('./app/images')],
                 loader: 'url-loader',
@@ -243,6 +243,10 @@ const webpackConfigBase = {
                     name: '[name].[hash:4].[ext]',
                     outputPath: './images'
                 }
+            },
+            {
+                test: /\.svg$/,
+                use: 'file-loader'
             },
             {
                 test: /\.(ico|icon)(\?.*)?$/,
