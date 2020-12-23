@@ -1,18 +1,18 @@
-import React,  { useState } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+import React,  { useState, useReducer } from 'react'
 import { Link } from 'react-router'
 import { Spin, Form, Icon, Input, Button, Row, Col, message } from 'antd'
 import Highlight, { defaultProps } from "prism-react-renderer"
 import theme from "prism-react-renderer/themes/nightOwl"
+
+import authorResults from "@reducers/authorReducer"
+
 import { Pre, Line, LineNo, LineContent } from "./styles"
-
-
 
 export default () => {
     const [lists, setLists] = useState([])
-
-    const listdatas = useSelector(state => state.listdatas)
-    const dispatch = useDispatch()
+    const [fetching, setFetching] = useState(false)
+    const [error, setError] = useState('')
+    const [results, setResults] = useState({})
     const exampleCode = `
     (function someDemo() {
       var test = "Hello World!";
@@ -21,15 +21,11 @@ export default () => {
     
     return () => <App />;
     `;
-    const addTodoList = () => {
-        dispatch({
-            type: ACTION_CONSTANTS.GET_AUTHOR_RESULT,
-            payload: { listName }
-        });
-    };
+
+    const [state, dispatch] = useReducer(authorResults, results)
 
     return (
-        <article className="post post-1" loaded="addTodoList()">
+        <article className="post post-1">
             <header className="entry-header">
                 <h1 className="entry-title">
                     <a href="single.html">Django 博客开发入门教程：前言</a>

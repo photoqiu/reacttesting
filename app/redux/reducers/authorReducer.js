@@ -8,6 +8,7 @@ export const initialState = {
 }
 
 export default function authorResults(state = initialState, action) {
+    console.log("action.type:", action.type)
   switch (action.type) {
     case ACTION_CONSTANTS.AUTHOR_RESULT_FETCHING:
         return {
