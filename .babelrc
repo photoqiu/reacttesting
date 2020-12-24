@@ -4,7 +4,8 @@
 		{
         	"useBuiltIns" : "usage",
         	"targets": {
-          		"chrome": "49",
+				"chrome": "49",
+				"node": 6,
           		"ie": "11"
 			},
 			"modules": "umd",
@@ -15,6 +16,7 @@
     ],
     "plugins": [
 		["@babel/plugin-syntax-dynamic-import"],
+		["lodash"],
 		["react-hot-loader/babel"],
 		["@babel/plugin-proposal-class-properties"],
       	["@babel/plugin-transform-runtime", {

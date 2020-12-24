@@ -4,7 +4,7 @@ Mock.setup({
     timeout: '1200-1600'
 })
 const url = {
-    tableDataOne: `${baseURL}mode1/tableDataOne`,
+    tableDataOne: `https://hn.algolia.com/api/v1/search?query=redux`,
     tableDataTwo: `${baseURL}mode1/tableDataTwo`,
     tableDataThi: `${baseURL}mode1/tableDataThi`
 }

@@ -1,18 +1,65 @@
-import React,  { useState, useReducer } from 'react'
+import React,  { useState, useReducer, useEffect } from 'react'
 import { Link } from 'react-router'
 import { Spin, Form, Icon, Input, Button, Row, Col, message } from 'antd'
 import Highlight, { defaultProps } from "prism-react-renderer"
 import theme from "prism-react-renderer/themes/nightOwl"
-
-import authorResults from "@reducers/authorReducer"
+import {doGetDatas}  from '@configs/base.ajax'
+import { login, loginByTicket }  from '@apis/common'
 
 import { Pre, Line, LineNo, LineContent } from "./styles"
 
+
+const fetchDataReducer = (state, action) => {
+    switch(action.type){
+        case 'FETCH_INIT':
+            return{
+                ...state,
+                isLoading: true,
+                isError: false
+            }
+        case 'FETCH_SUCCESS':
+            return {
+                ...state,
+                isLoading: false,
+                isErroe: false,
+                data: action.payload,
+            }
+        case 'FETCH_ERROR':
+            return {
+                ...state,
+                isLoading: false,
+                isErroe: false,
+                data: action.payload,
+            }
+            break;
+        default:
+            return state;
+    }
+}
+
+const useDataApi = (initUrl, initData) => {
+    const [url, setUrl] = useState(initUrl);
+    const [state, dispatch] = useReducer(fetchDataReducer,{
+        data: initData,
+        isLoading: false,
+        isErroe: false
+    })
+    useEffect(() => {
+        const fetchData = async () => {
+            dispatch({type: 'FETCH_INIT'})
+            try{
+                const result =  await doGetDatas(url);
+                dispatch({type: 'FETCH_SUCCESS', payload: result.data})
+            }catch(error){
+                dispatch({type: 'FETCH_ERROR'})
+            }
+        }
+        fetchData();
+    },[url]);
+    return [state, setUrl];
+}
+
 export default () => {
-    const [lists, setLists] = useState([])
-    const [fetching, setFetching] = useState(false)
-    const [error, setError] = useState('')
-    const [results, setResults] = useState({})
     const exampleCode = `
     (function someDemo() {
       var test = "Hello World!";
@@ -22,8 +69,10 @@ export default () => {
     return () => <App />;
     `;
 
-    const [state, dispatch] = useReducer(authorResults, results)
-
+    const [{data, isLoading,isError}, fetchData ] = useDataApi(
+            'https://hn.algolia.com/api/v1/search?query=redux', {hits: []});
+    
+    console.log("fetchData:", data)
     return (
         <article className="post post-1">
             <header className="entry-header">
