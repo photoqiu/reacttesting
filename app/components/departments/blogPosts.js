@@ -5,7 +5,7 @@ import Highlight, { defaultProps } from "prism-react-renderer"
 import theme from "prism-react-renderer/themes/nightOwl"
 import {doGetDatas}  from '@configs/base.ajax'
 import { login, loginByTicket }  from '@apis/common'
-
+import '@datas/tables'
 import { Pre, Line, LineNo, LineContent } from "./styles"
 
 
@@ -18,6 +18,7 @@ const fetchDataReducer = (state, action) => {
                 isError: false
             }
         case 'FETCH_SUCCESS':
+            console.log("actions:", action)
             return {
                 ...state,
                 isLoading: false,
@@ -47,10 +48,10 @@ const useDataApi = (initUrl, initData) => {
     useEffect(() => {
         const fetchData = async () => {
             dispatch({type: 'FETCH_INIT'})
-            try{
-                const result =  await doGetDatas(url);
-                dispatch({type: 'FETCH_SUCCESS', payload: result.data})
-            }catch(error){
+            try {
+                const result =  await doGetDatas(url)
+                dispatch({type: 'FETCH_SUCCESS', payload: result})
+            } catch(error) {
                 dispatch({type: 'FETCH_ERROR'})
             }
         }
@@ -70,26 +71,26 @@ export default () => {
     `;
 
     const [{data, isLoading,isError}, fetchData ] = useDataApi(
-            'https://hn.algolia.com/api/v1/search?query=redux', {hits: []});
+            'https://hn.algolia.com/api/v1/search?query=redux', {dataSource: []});
     
     console.log("fetchData:", data)
-    return (
-        <article className="post post-1">
-            <header className="entry-header">
+
+    const todoItems = data.dataSource.map((todo, index) =>
+        <>
+        <header className="entry-header" key={index}>
                 <h1 className="entry-title">
-                    <a href="single.html">Django 博客开发入门教程：前言</a>
+                    <a href="single.html">{todo.mockTitle}</a>
                 </h1>
                 <div className="entry-meta">
-                    <span className="post-category"><a href="#">Django 博客教程</a></span>
-                    <span className="post-date"><a href="#"><time className="entry-date" dateTime="2012-11-09T23:15:57+00:00">2017年5月11日</time></a></span>
-                    <span className="post-author"><a href="#">追梦人物</a></span>
-                    <span className="comments-link"><a href="#">4 评论</a></span>
-                    <span className="views-count"><a href="#">588 阅读</a></span>
+                    <span className="post-category"><a href="#">{todo.mockAction}</a></span>
+                    <span className="post-date"><a href="#"><time className="entry-date" dateTime={todo.createtimer}>{todo.createtimer}</time></a></span>
+                    <span className="post-author"><a href="#">{todo.username}</a></span>
+                    <span className="comments-link"><a href="#">{todo.discuzNumbers} 评论</a></span>
+                    <span className="views-count"><a href="#">{todo.readNumbers} 阅读</a></span>
                 </div>
             </header>
             <div className="entry-content clearfix">
-                <p>免费、中文、零基础，完整的项目，基于最新版 Django 1.10 和 Python 3.5。带你从零开始一步步开发属于自己的博客网站，帮助你以最快的速度掌握 Django
-                    开发的技巧...</p>
+                <p>{todo.mockContent}...</p>
                 <Highlight {...defaultProps} code={exampleCode} language="jsx">
                     {({ className, style, tokens, getLineProps, getTokenProps }) => (
                     <pre className={className} style={style}>
@@ -110,6 +111,12 @@ export default () => {
                     <a href="#" className="more-link">继续阅读 <span className="meta-nav">→</span></a>
                 </div>
             </div>
+        </>
+    );
+
+    return (
+        <article className="post post-1">
+            {todoItems}
         </article>
     )
 

@@ -1,7 +1,12 @@
 import Mock from 'mockjs'
 import { baseURL } from '@configURL'
+import mockFetch from 'mockjs-fetch'
+
+mockFetch(Mock)
+let Random = Mock.Random;
 Mock.setup({
-    timeout: '1200-1600'
+    debug: true,
+    timeout: '900-1500'
 })
 const url = {
     tableDataOne: `https://hn.algolia.com/api/v1/search?query=redux`,
@@ -10,10 +15,19 @@ const url = {
 }
 module.exports = [
     Mock.mock(url.tableDataOne, 'GET', {
-        'dataSource|5':[{
+        'code': 0,
+        'header':'get',
+        'dataSource|9':[{
             'key|+1': 1,
-            'mockTitle|1':['哑巴', 'Butter-fly', '肆无忌惮', '摩天大楼', '初学者'],
-            'mockContent|1': ['你翻译不了我的声响', '数码宝贝主题曲', '摩天大楼太稀有', '像海浪撞破了山丘'],
+            'discuzNumbers': /\d{0,2}/,
+            'readNumbers': /\d{1,8}/,
+            "space|2": "@county(true)",
+            'createtimer': "@datetime('yyyy-MM-dd A HH:mm:ss')",
+            'imagePath':Random.image('200x100', '#4A7BF7', 'Hello'),
+            'phonenumbers': /\d{5,10}/,
+            'mockTitle':"@ctitle(13, 45)",
+            'username':"@cname",
+            'mockContent': "@cparagraph()",
             'mockAction|1': ['下载', '试听', '喜欢']
         }]
     })
