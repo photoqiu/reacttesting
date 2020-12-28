@@ -22,6 +22,9 @@ export default () => {
                     <li className="nav-item">
                         <Link to="login" className="nav-link">Link</Link>
                     </li>
+                    <li className="nav-item">
+                        <Link to="posts/1" className="nav-link">Link2</Link>
+                    </li>
                     <NavDropdown title="Dropdown" id="basic-nav-dropdown">
                         <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
                         <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>

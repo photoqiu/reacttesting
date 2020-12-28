@@ -7,7 +7,7 @@ import {
 import { bindActionCreators } from 'redux'
 import getAuthorResults from '@actions/authorActions'
 import { Spin, Form, Icon, Input, Button, Row, Col, message } from 'antd'
-import BlogPosts from '@components/departments/blogPosts'
+import BlogDetails from '@components/departments/blogDetails'
 import { writeStorage, deleteFromStorage, useLocalStorage } from '@rehooks/local-storage'
 
 function mapStateToProps(state) {
@@ -21,7 +21,7 @@ function mapDispatchToProps(dispatch) {
     }
 }
 
-class Index extends Component {
+class Detail extends Component {
     constructor() {
         super()
         this.state = {
@@ -38,10 +38,10 @@ class Index extends Component {
     render() {
         return (
             <div className="container">
-                <BlogPosts />
+                <BlogDetails />
             </div>
         )
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Index);
+export default connect(mapStateToProps, mapDispatchToProps)(Detail);

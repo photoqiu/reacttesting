@@ -76,8 +76,8 @@ export default () => {
     console.log("fetchData:", data)
 
     const todoItems = data.dataSource.map((todo, index) =>
-        <>
-        <header className="entry-header" key={index}>
+        <article className={`post post-${index}`} key={index}>
+            <header className="entry-header">
                 <h1 className="entry-title">
                     <a href="single.html">{todo.mockTitle}</a>
                 </h1>
@@ -111,13 +111,13 @@ export default () => {
                     <a href="#" className="more-link">继续阅读 <span className="meta-nav">→</span></a>
                 </div>
             </div>
-        </>
+        </article>
     );
 
     return (
-        <article className="post post-1">
+        <>    
             {todoItems}
-        </article>
+        </>
     )
 
 }

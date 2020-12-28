@@ -10,7 +10,7 @@ Mock.setup({
 })
 const url = {
     tableDataOne: `https://hn.algolia.com/api/v1/search?query=redux`,
-    tableDataTwo: `${baseURL}mode1/tableDataTwo`,
+    tableDataTwo: `https://hn.algolia.com/api/v1/details/1`,
     tableDataThi: `${baseURL}mode1/tableDataThi`
 }
 module.exports = [

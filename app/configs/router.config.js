@@ -3,6 +3,7 @@ import { BrowserRouter as Router, HashRouter, Route, Switch, Link, Redirect,  us
 import Error from '@components/Index/error'
 import Login from '@components/Index/login'
 import Index from '@components/Index/index'
+import Detail from '@components/Index/detail'
 import MainHeaders from '@components/departments/mainHeaders'
 import { Layout } from 'antd'
 
@@ -13,18 +14,19 @@ export default function RouteConfig() {
         <Router>
             <>
             <Layout>
-                    <MainHeaders />
-                    <Layout>
-                        <Content>
-                            <Switch>
-                                <Route path="/" exact component={Index} />
-                                <Route path="/login" component={MainHeaders} />
-                                <Route path="*" component={Error} />
-                            </Switch>
-                        </Content>
-                        <Sider>Sider</Sider>
-                    </Layout>
-                    <Footer>Footer</Footer>
+                <MainHeaders />
+                <Layout>
+                    <Content>
+                        <Switch>
+                            <Route path="/" exact component={Index} />
+                            <Route path="/login" component={MainHeaders} />
+                            <Route path="/posts/:id" component={Detail} />
+                            <Route path="*" component={Error} />
+                        </Switch>
+                    </Content>
+                    <Sider>Sider</Sider>
+                </Layout>
+                <Footer>Footer</Footer>
             </Layout>
             </>
         </Router>
