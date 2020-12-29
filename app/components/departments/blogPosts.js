@@ -1,5 +1,5 @@
 import React,  { useState, useReducer, useEffect } from 'react'
-import { Link } from 'react-router'
+import { Link, useRouteMatch } from "react-router-dom"
 import { Spin, Form, Icon, Input, Button, Row, Col, message } from 'antd'
 import Highlight, { defaultProps } from "prism-react-renderer"
 import theme from "prism-react-renderer/themes/nightOwl"
@@ -60,6 +60,7 @@ const useDataApi = (initUrl, initData) => {
     return [state, setUrl];
 }
 
+
 export default () => {
     const exampleCode = `
     (function someDemo() {
@@ -73,13 +74,13 @@ export default () => {
     const [{data, isLoading,isError}, fetchData ] = useDataApi(
             'https://hn.algolia.com/api/v1/search?query=redux', {dataSource: []});
     
-    console.log("fetchData:", data)
+    const { path, url } = useRouteMatch()
 
     const todoItems = data.dataSource.map((todo, index) =>
         <article className={`post post-${index}`} key={index}>
             <header className="entry-header">
                 <h1 className="entry-title">
-                    <a href="single.html">{todo.mockTitle}</a>
+                    <Link to={`${url}posts/${todo.key}`}>{todo.mockTitle}</Link>
                 </h1>
                 <div className="entry-meta">
                     <span className="post-category"><a href="#">{todo.mockAction}</a></span>

@@ -7,6 +7,11 @@ import theme from "prism-react-renderer/themes/nightOwl"
 import { Pre, Line, LineNo, LineContent } from "./styles"
 export default () => {
     const [lists, setLists] = useState([])
-
+    return (
+        <>
+            <div>blog</div>
+            <div>details</div>
+        </>
+    )
 }
 
