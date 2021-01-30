@@ -106,7 +106,7 @@ const webpackConfigProd = {
             // { from: './app/resource/dll', to: '../dist/resource/dll' },
         ]),
         new OptimizeCSSAssetsPlugin(),
-        new CleanWebpackPlugin(),
+        new CleanWebpackPlugin()
     ],
 }
 
